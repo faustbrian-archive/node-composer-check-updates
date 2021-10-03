@@ -1,0 +1,51 @@
+{
+    "name": "@faustbrian/node-composer-check-updates",
+    "version": "1.0.0",
+    "description": "Update checker for https://github.com/composer/composer dependencies",
+    "homepage": "https://github.com/faustbrian/node-composer-check-updates",
+    "bugs": {
+        "url": "https://github.com/faustbrian/node-composer-check-updates/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/faustbrian/node-composer-check-updates.git"
+    },
+    "license": "AGPL-3.0-or-later",
+    "author": {
+        "name": "Brian Faust",
+        "email": "brian@faust.mx",
+        "url": "https://faust.mx"
+    },
+    "bin": {
+        "ccu": "./dist/index.js"
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsup source --format cjs,esm --dts-resolve",
+        "test": "jest",
+        "lint": "stdlint && deno fmt source",
+        "prepublishOnly": "pnpm run build"
+    },
+    "dependencies": {
+        "chalk": "^4.1.2",
+        "cli-table": "^0.3.6",
+        "clipanion": "^3.2.0-rc.3",
+        "cross-fetch": "^3.1.4",
+        "semver": "^7.3.5"
+    },
+    "devDependencies": {
+        "@faustbrian/stdlint": "^1.0.0",
+        "@sindresorhus/tsconfig": "^2.0.0",
+        "@types/node": "^16.10.2",
+        "tsup": "^4.8.4",
+        "typescript": "^4.4.3"
+    },
+    "engines": {
+        "node": ">=12"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}
