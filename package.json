@@ -1,6 +1,6 @@
 {
     "name": "@faustbrian/node-composer-check-updates",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Update checker for https://github.com/composer/composer dependencies",
     "homepage": "https://github.com/faustbrian/node-composer-check-updates",
     "bugs": {
