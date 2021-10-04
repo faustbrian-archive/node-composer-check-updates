@@ -50,6 +50,12 @@ export class CheckCommand extends Command {
     for (const packageType of packageTypes) {
       const pkgs = { ...contents }[packageType];
 
+      if (!pkgs) {
+        console.log(`Skipping [${packageType}] because it is not defined`)
+
+        continue;
+      }
+
       for (const [package_, version] of Object.entries(pkgs)) {
         if (package_ === "php") {
           continue;
