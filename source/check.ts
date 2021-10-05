@@ -147,6 +147,7 @@ export class CheckCommand extends Command {
 
     if (this.composer || this.composerIgnore) {
       const { stderr, stdout } = await execa("composer", [
+        "update",
         this.composerIgnore ? "--ignore-platform-reqs" : "",
       ]);
 
