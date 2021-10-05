@@ -2,6 +2,7 @@ import chalk from "chalk";
 import Table from "cli-table";
 import { Command, Option } from "clipanion";
 import fetch from "cross-fetch";
+import execa from "execa";
 import fs from "fs";
 import path from "path";
 import semver from "semver";
@@ -14,6 +15,8 @@ export class CheckCommand extends Command {
   tildeMinor = Option.Boolean("--tilde-minor");
   caret = Option.Boolean("--caret");
   caretMinor = Option.Boolean("--caret-minor");
+  composer = Option.Boolean("--composer");
+  composerIgnore = Option.Boolean("--composer-ignore");
 
   async execute() {
     const contents = JSON.parse(
@@ -51,7 +54,7 @@ export class CheckCommand extends Command {
       const pkgs = { ...contents }[packageType];
 
       if (!pkgs) {
-        console.log(`Skipping [${packageType}] because it is not defined`)
+        console.log(`Skipping [${packageType}] because it is not defined`);
 
         continue;
       }
@@ -141,5 +144,19 @@ export class CheckCommand extends Command {
       path.resolve(process.cwd(), "composer.json"),
       JSON.stringify(contents, undefined, 4),
     );
+
+    if (this.composer || this.composerIgnore) {
+      const { stderr, stdout } = await execa("composer", [
+        this.composerIgnore ? "--ignore-platform-reqs" : "",
+      ]);
+
+      if (stderr) {
+        console.error(stderr);
+      }
+
+      if (stdout) {
+        console.log(stdout);
+      }
+    }
   }
 }
