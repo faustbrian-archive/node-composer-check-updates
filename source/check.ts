@@ -102,7 +102,7 @@ export class CheckCommand extends Command {
               if (this.tildeMinor) {
                 contents[packageType][
                   package_
-                ] = `~${versionNew.major}.${versionNew.minor}`;
+                ] = `~${versionOld.major}.${versionNew.minor}`;
               }
 
               if (this.caret) {
@@ -112,7 +112,7 @@ export class CheckCommand extends Command {
               if (this.caretMinor) {
                 contents[packageType][
                   package_
-                ] = `^${versionNew.major}.${versionNew.minor}`;
+                ] = `^${versionOld.major}.${versionNew.minor}`;
               }
 
               table.push([
